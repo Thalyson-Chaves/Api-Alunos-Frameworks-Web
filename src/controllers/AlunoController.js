@@ -1,14 +1,20 @@
 const alunoService = require("../services/AlunoService");
 
 class AlunoController{
-    
+
     async findMany(request, response){
-        let {page, pageSize} = request.query;
-        page ||= 1;
-        pageSize ||= 10;
-        
-        const alunos = await alunoService.findMany(page, pageSize);
-        return response.status(200).json({alunos});
+        let { page, pageSize, orderBy, order } = request.query;
+
+        // Valores padrão
+        page = Number(page) || 1;
+        pageSize = Number(pageSize) || 10;
+        orderBy = orderBy || 'id';
+        order = order === 'desc' ? 'desc' : 'asc'; // Garante que seja asc ou desc
+
+        const resultado = await alunoService.findMany(page, pageSize, orderBy, order);
+
+        // Retorna o objeto com { alunos, total }
+        return response.status(200).json(resultado);
     }
 
     async create(request, response){
