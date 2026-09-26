@@ -29,6 +29,19 @@ class AlunoService {
         return aluno;
     }
 
+    async update(id, dadosAtualizados) {
+        // Verifica se o aluno existe (se não existir, o findUnique lança o erro 404 automaticamente)
+        await this.findUnique(id);
+
+        // Se passou, atualiza no banco de dados
+        const alunoAtualizado = await prisma.aluno.update({
+            where: { id: Number(id) },
+            data: dadosAtualizados
+        });
+
+        return alunoAtualizado;
+    }
+
     async create(aluno) {
         const { nome, email } = aluno;
         if (!nome || !email) {
