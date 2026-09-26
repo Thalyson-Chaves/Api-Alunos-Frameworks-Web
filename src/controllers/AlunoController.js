@@ -39,6 +39,19 @@ class AlunoController{
         }
     }
 
+    async delete(request, response) {
+        try {
+            const { id } = request.params;
+
+            await alunoService.delete(id);
+
+            // Retorna 204 (Sucesso, sem conteúdo na resposta)
+            return response.status(204).send();
+        } catch (error) {
+            return response.status(error.statusCode || 400).json({ error: error.message });
+        }
+    }
+
 }
 
 module.exports = new AlunoController();

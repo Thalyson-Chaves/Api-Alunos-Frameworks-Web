@@ -17,4 +17,7 @@ router.get("/:id", alunoController.findUnique);
 // Rota do Requisito 3 (Atualizar) que acabaste de fazer!
 router.put("/:id", validarAluno, alunoController.update);
 
+// Rota do Requisito 4 (Apagar)
+router.delete("/:id", alunoController.delete);
+
 module.exports = router;

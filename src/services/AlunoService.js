@@ -52,6 +52,16 @@ class AlunoService {
 
         return novoAluno;
     }
+
+    async delete(id) {
+        // Verifica se o aluno existe (se não, lança o erro 404)
+        await this.findUnique(id);
+
+        // Apaga o aluno do banco de dados
+        await prisma.aluno.delete({
+            where: { id: Number(id) }
+        });
+    }
 }
 
 module.exports = new AlunoService();
