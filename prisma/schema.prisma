@@ -11,10 +11,10 @@ datasource db {
   provider = "mysql"
 }
 
-model Aluno{
-  id Int @id @default(autoincrement())
-  nome String
-  email String @unique
+model Aluno {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  email     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

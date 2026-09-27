@@ -17,6 +17,19 @@ class AlunoController{
         return response.status(200).json(resultado);
     }
 
+    async findUnique(request, response) {
+        try {
+            const { id } = request.params;
+
+            // Supondo que o teu AlunoService tenha a função findUnique (ou findById)
+            const aluno = await alunoService.findUnique(id);
+
+            return response.status(200).json({ aluno });
+        } catch (error) {
+            return response.status(error.statusCode || 404).json({ error: error.message });
+        }
+    }
+
     async update(request, response) {
         try {
             const { id } = request.params;

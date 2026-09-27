@@ -1,14 +1,11 @@
-// src/database/prisma.js
-const { PrismaClient } =
-  require('@prisma/client');
-const { PrismaMariaDb } =
-  require('@prisma/adapter-mariadb');
+const { PrismaClient } = require('@prisma/client');
+const { PrismaMariaDb } = require('@prisma/adapter-mariadb');
 
 const adapter = new PrismaMariaDb({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
+  host: 'localhost',
+  user: 'root',
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  database: 'api_alunos'
 });
 
 module.exports = new PrismaClient({ adapter });
